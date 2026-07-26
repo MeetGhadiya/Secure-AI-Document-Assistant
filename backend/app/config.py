@@ -15,6 +15,11 @@ class Settings:
     # --- Gemini / LLM ---
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
     GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+    # Optional comma-separated fallbacks (ordered). Example: "gemini-3.5-flash-lite,gemini-2.5-flash-lite"
+    _raw_fallbacks: str = os.getenv("GEMINI_MODEL_FALLBACKS", "")
+    GEMINI_MODEL_FALLBACKS: list = [m.strip() for m in _raw_fallbacks.split(",") if m.strip()]
+    # Computed chain: primary followed by any fallbacks
+    GEMINI_MODEL_CHAIN: list = [GEMINI_MODEL] + GEMINI_MODEL_FALLBACKS
 
     # --- Storage paths ---
     CHROMA_DB_PATH: str = os.getenv("CHROMA_DB_PATH", str(BASE_DIR / "chroma_db"))

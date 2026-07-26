@@ -43,6 +43,12 @@ npm run dev
 Open the printed local URL (default `http://localhost:5173`). The Vite dev
 server proxies `/api` requests to the backend on port 8000.
 
+## Demo screenshot
+
+The project README includes a screenshot showing the app running locally. To embed the screenshot, place your image at `docs/images/demo-screenshot.png` (see the placeholder file `docs/images/DEMO_SCREENSHOT_PLACEHOLDER.txt`). The README will display it when the file exists:
+
+![App demo screenshot](docs/images/demo-screenshot.png)
+
 ## Documentation
 
 - [`docs/Architecture.md`](docs/Architecture.md) — system design and data flow
@@ -80,6 +86,9 @@ secure-document-rag/
 
 See `backend/.env.example` for all available settings (Gemini API key/model,
 chunk size/overlap, upload size limit, top-K retrieval count, CORS origins).
+
+Note: The project includes a Gemini model fallback chain and retry logic.
+In local testing the configured model chain (`GEMINI_MODEL` + `GEMINI_MODEL_FALLBACKS`) ran successfully and produced answers from uploaded documents.
 
 ## Future enhancements
 

@@ -24,7 +24,8 @@ npm run dev
 | Variable | Description | Default |
 |---|---|---|
 | `GEMINI_API_KEY` | Google Gemini API key (required) | — |
-| `GEMINI_MODEL` | Gemini model name | `gemini-1.5-flash` |
+| `GEMINI_MODEL` | Gemini model name | `gemini-3.1-flash-lite` |
+| `GEMINI_MODEL_FALLBACKS` | Optional comma-separated ordered fallback models | (empty) |
 | `CHROMA_DB_PATH` | ChromaDB persistence directory | `./chroma_db` |
 | `UPLOAD_DIR` | Uploaded file storage directory | `./uploads` |
 | `SQLITE_DB_PATH` | SQLite database file path | `./app.db` |

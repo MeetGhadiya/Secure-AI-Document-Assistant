@@ -49,7 +49,12 @@ async def query_documents(
         top_k=payload.top_k,
     )
 
-    answer = generate_answer(payload.question, context_chunks)
+    try:
+        answer = generate_answer(payload.question, context_chunks)
+    except RuntimeError as e:
+        # Provide a clearer error to the frontend when the Gemini client
+        # isn't configured (missing API key or model misconfiguration).
+        raise HTTPException(status_code=500, detail=str(e))
 
     sources = [
         SourceCitation(

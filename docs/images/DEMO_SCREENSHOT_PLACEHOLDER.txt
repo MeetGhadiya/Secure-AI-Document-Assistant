@@ -1,0 +1,9 @@
+Place the demo screenshot image here to have it embedded in the README.
+
+Save the screenshot file as:
+
+docs/images/demo-screenshot.png
+
+You can copy the PNG/JPG exported from the chat and drop it at that path. The README includes the following markdown which will display the image:
+
+![App demo screenshot](docs/images/demo-screenshot.png)
