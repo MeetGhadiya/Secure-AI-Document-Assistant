@@ -43,6 +43,8 @@ npm run dev
 Open the printed local URL (default `http://localhost:5173`). The Vite dev
 server proxies `/api` requests to the backend on port 8000.
 
+> Running on Windows? See [`docs/Run.md`](docs/Run.md) for PowerShell-specific setup steps.
+
 ## Demo screenshot
 
 ![App demo screenshot](docs/images/test.png)
@@ -55,6 +57,7 @@ server proxies `/api` requests to the backend on port 8000.
 - [`docs/Security.md`](docs/Security.md) — security measures and production
   hardening notes
 - [`docs/Deployment.md`](docs/Deployment.md) — deployment guidance
+- [`docs/Run.md`](docs/Run.md) — Windows-specific setup steps
 
 ## Project structure
 
