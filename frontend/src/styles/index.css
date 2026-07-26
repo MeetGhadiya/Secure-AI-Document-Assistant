@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  color: #191c1e;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c6c6cd transparent;
+}
