@@ -16,9 +16,19 @@ function formatSize(bytes) {
 export default function DocumentCard({ document, onDelete, selected, onSelect }) {
   const status = STATUS_STYLES[document.status] || STATUS_STYLES.processing;
 
+  function handleKeyDown(e) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onSelect(document);
+    }
+  }
+
   return (
-    <button
+    <div
+      role="button"
+      tabIndex={0}
       onClick={() => onSelect(document)}
+      onKeyDown={handleKeyDown}
       className={`w-full text-left rounded-lg border p-4 transition-all hover:shadow-soft hover:border-navy/40 ${
         selected ? "border-navy bg-surface-container" : "border-outline bg-surface"
       }`}
@@ -53,6 +63,6 @@ export default function DocumentCard({ document, onDelete, selected, onSelect })
         <span className="text-xs font-medium text-on-surface-variant">{status.label}</span>
         {status.badge && <SecurityBadge label={status.badge} />}
       </div>
-    </button>
+    </div>
   );
 }
