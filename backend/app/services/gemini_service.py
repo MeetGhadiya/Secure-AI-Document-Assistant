@@ -217,6 +217,19 @@ def generate_answer(question: str, context_chunks: list) -> str:
     if last_exception is not None:
         try:
             payload = last_exception.args[0] if hasattr(last_exception, "args") and last_exception.args else str(last_exception)
+            # Check both payload and full exception string for known auth errors
+            low_payload = repr(payload).lower() if payload is not None else ""
+            low_full = str(last_exception).lower()
+            # Friendly error for invalid API key
+            if (
+                "api key not valid" in low_payload
+                or "api_key_invalid" in low_payload
+                or "invalid_argument" in low_payload
+                or "api key not valid" in low_full
+                or "api_key_invalid" in low_full
+                or "invalid_argument" in low_full
+            ):
+                raise RuntimeError("GenAI request failed: API key not valid. Please rotate or verify your GEMINI_API_KEY.") from last_exception
             raise RuntimeError(f"GenAI request failed: {payload}") from last_exception
         except Exception:
             raise RuntimeError(f"GenAI request failed: {last_exception}") from last_exception

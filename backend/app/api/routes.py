@@ -52,9 +52,27 @@ async def query_documents(
     try:
         answer = generate_answer(payload.question, context_chunks)
     except RuntimeError as e:
-        # Provide a clearer error to the frontend when the Gemini client
-        # isn't configured (missing API key or model misconfiguration).
-        raise HTTPException(status_code=500, detail=str(e))
+        # Map known GenAI errors to appropriate HTTP status codes so the
+        # frontend can display a clearer message instead of a raw 500.
+        msg = str(e)
+        low = msg.lower()
+
+        # Missing API key
+        if "api key is not available" in low:
+            raise HTTPException(status_code=401, detail="api key is not available")
+
+        # Invalid API key / unauthorized
+        if "api key not valid" in low or "api_key_invalid" in low or "invalid_argument" in low or "401" in low:
+            raise HTTPException(status_code=401, detail="GenAI API key invalid or unauthorized")
+
+        # Service unavailable / rate limiting
+        if "503" in low or "unavailable" in low:
+            raise HTTPException(status_code=503, detail=msg)
+        if "429" in low or "rate limit" in low:
+            raise HTTPException(status_code=429, detail=msg)
+
+        # Fallback: internal server error
+        raise HTTPException(status_code=500, detail=msg)
 
     sources = [
         SourceCitation(
