@@ -45,9 +45,8 @@ server proxies `/api` requests to the backend on port 8000.
 
 ## Demo screenshot
 
-The project README includes a screenshot showing the app running locally. To embed the screenshot, place your image at `docs/images/demo-screenshot.png` (see the placeholder file `docs/images/DEMO_SCREENSHOT_PLACEHOLDER.txt`). The README will display it when the file exists:
-
-![App demo screenshot](docs/images/demo-screenshot.png)
+![App demo screenshot](docs/images/test.png)
+![App demo screenshot 2](docs/images/test1.png)
 
 ## Documentation
 
